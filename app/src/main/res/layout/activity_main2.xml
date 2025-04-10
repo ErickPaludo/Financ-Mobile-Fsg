@@ -8,139 +8,138 @@
     android:padding="16dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#DDDDDD"
-        android:padding="16dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginHorizontal="8dp"
-        android:clipToOutline="true"
-        android:elevation="4dp">
 
-        <!-- Título -->
-        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Título"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:padding="8dp" />
-
-        <!-- Barra com Débito | Saldo | Crédito -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="8dp">
-
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Débito"
-                android:gravity="center"
-                android:background="#888888"
-                android:padding="8dp"/>
-
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Saldo"
-                android:gravity="center"
-                android:background="#AAAAAA"
-                android:padding="8dp"/>
-
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Crédito"
-                android:gravity="center"
-                android:background="#888888"
-                android:padding="8dp"/>
-        </LinearLayout>
-
-        <!-- Círculo com texto -->
-        <FrameLayout
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#DDDDDD"
+            android:padding="16dp"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:background="@drawable/circle_background">
+            android:layout_marginBottom="16dp"
+            android:layout_marginHorizontal="8dp"
+            android:clipToOutline="true"
+            android:elevation="4dp">
+        <!-- COMENTADO TEMPORARIAMENTE -->
+            <!--
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Título"
+                        android:textAlignment="center"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:padding="8dp" />
 
-            <TextView
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Valor\nliquido\nRecebido"
-                android:textAlignment="center"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:gravity="center"
-                android:textSize="16sp"/>
-        </FrameLayout>
+                android:layout_marginTop="8dp">
 
-        <!-- Dois campos -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp"
-            android:gravity="center">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Débito"
+                    android:gravity="center"
+                    android:background="#888888"
+                    android:padding="8dp"/>
 
-            <EditText
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:hint="Campo 1"
-                android:layout_marginEnd="8dp"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Saldo"
+                    android:gravity="center"
+                    android:background="#AAAAAA"
+                    android:padding="8dp"/>
 
-            <EditText
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:hint="Campo 2"/>
-        </LinearLayout>
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Crédito"
+                    android:gravity="center"
+                    android:background="#888888"
+                    android:padding="8dp"/>
+            </LinearLayout>
 
-        <!-- Área grande (ex: lista ou conteúdo) -->
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="16dp"
-            android:background="#CCCCCC">
 
-            <TextView
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/circle_background">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Valor\nliquido\nRecebido"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:textSize="16sp"/>
+            </FrameLayout>
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Conteúdo ou Lista aqui"
-                android:padding="16dp"/>
-        </ScrollView>
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:gravity="center">
 
-        <!-- Botões -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="16dp">
+                <EditText
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Campo 1"
+                    android:layout_marginEnd="8dp"/>
 
-            <Button
+                <EditText
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Campo 2"/>
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Dicas de Finanças"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginTop="16dp"
+                android:background="#CCCCCC">
 
-            <Button
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Cadastrar"/>
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Conteúdo ou Lista aqui"
+                    android:padding="16dp"/>
+            </ScrollView>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="16dp">
+
+                <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Dicas de Finanças"
+                    android:layout_marginEnd="8dp"/>
+
+                <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Cadastrar"/>
+            </LinearLayout>
+    -->
     </LinearLayout>
 </LinearLayout>

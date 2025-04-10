@@ -7,127 +7,168 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/editTextText"
-        android:layout_width="121dp"
-        android:layout_height="41dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="101dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="761dp"
+        android:background="#DDDDDD"
+        android:backgroundTint="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/editTextText2"
-        android:layout_width="121dp"
-        android:layout_height="41dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        android:layout_marginLeft="219dp"
-        android:layout_marginTop="101dp" />
+        <!-- Título -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="#AAAAAA"
+            android:padding="8dp"
+            android:text="Cadastro"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editTextText3"
-        android:layout_width="121dp"
-        android:layout_height="41dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        android:layout_marginLeft="219dp"
-        android:layout_marginTop="168dp" />
+        <!-- Tabs -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="0dp">
 
-    <EditText
-        android:id="@+id/editTextText7"
-        android:layout_width="121dp"
-        android:layout_height="41dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        android:layout_marginLeft="219dp"
-        android:layout_marginTop="242dp" />
+            <Button
+                android:id="@+id/btnSaldo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_not_arredondado"
+                android:shadowRadius="@android:integer/config_longAnimTime"
+                android:text="Saldo" />
 
-    <EditText
-        android:id="@+id/editTextText4"
-        android:layout_width="121dp"
-        android:layout_height="41dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="101dp" />
+            <Button
+                android:id="@+id/btnDebito"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_not_arredondado"
+                android:shadowRadius="@android:integer/config_longAnimTime"
+                android:text="Débito" />
 
-    <EditText
-        android:id="@+id/editTextText5"
-        android:layout_width="121dp"
-        android:layout_height="41dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="168dp" />
-
-    <EditText
-        android:id="@+id/editTextText6"
-        android:layout_width="121dp"
-        android:layout_height="41dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="242dp" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="78dp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_marginLeft="219dp"
-        android:layout_marginTop="78dp" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="149dp" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_marginLeft="219dp"
-        android:layout_marginTop="149dp" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="223dp" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_marginLeft="219dp"
-        android:layout_marginTop="216dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btnCredito"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/button_not_arredondado"
+                android:shadowRadius="@android:integer/config_longAnimTime"
+                android:text="Crédito" />
 
 
+        </LinearLayout>
+
+        <!-- Campos de entrada -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/textTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:hint="Título" />
+
+            <EditText
+                android:id="@+id/textValor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Valor"
+                android:inputType="numberDecimal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/textData"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:hint="Data"
+                android:inputType="datetime" />
+
+            <EditText
+                android:id="@+id/textValorParcela"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:hint="Valor Parcela"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/textDesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:hint="Descrição" />
+
+            <EditText
+                android:id="@+id/textParcelas"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Parcelas"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <!-- Botões de ação -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSalvar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:text="Salvar" />
+
+            <Button
+                android:id="@+id/btnCancelar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancelar" />
+        </LinearLayout>
+
+        <!-- Botão extra -->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="Dicas de Finanças" />
+
+    </LinearLayout>
 </FrameLayout>
