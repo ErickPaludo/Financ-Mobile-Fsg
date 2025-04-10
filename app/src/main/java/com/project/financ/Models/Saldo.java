@@ -8,10 +8,21 @@ public class Saldo extends Gastos<Saldo> {
     public Saldo(int id, String titulo, String descricao, double valor, LocalDateTime dthrReg, String status, int userId) {
         super(id, titulo, descricao, valor, dthrReg, status, userId);
     }
+
+    public Saldo() {
+        super();
+    }
+
     @NonNull
     @Override
     public String toString() {
-        return "Saldo:";
+        return "ID: " + id +
+                "\nTitulo: " + titulo +
+                "\nDescrição: " + descricao +
+                "\nValor: " + valor +
+                "\nData e Hora: " + dthrReg +
+                "\nStatus: " + status +
+                "\nUserId: " + userId;
     }
 
     @Override

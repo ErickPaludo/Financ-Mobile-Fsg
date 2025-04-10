@@ -11,9 +11,14 @@ public class Debito extends  Gastos<Debito> {
     @NonNull
     @Override
     public String toString() {
-        return "Debito:";
+        return "ID: " + id +
+                "\nTitulo: " + titulo +
+                "\nDescrição: " + descricao +
+                "\nValor: " + valor +
+                "\nData e Hora: " + dthrReg +
+                "\nStatus: " + status +
+                "\nUserId: " + userId;
     }
-
     @Override
     public void Cadastro() {
 

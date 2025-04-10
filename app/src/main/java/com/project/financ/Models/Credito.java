@@ -48,4 +48,17 @@ public class Credito extends Gastos<Credito>{
     public Credito Retorno() {
         return null;
     }
+    @Override
+    public String toString() {
+        return "ID: " + id +
+                "\nTitulo: " + titulo +
+                "\nDescrição: " + descricao +
+                "\nValor: " + valor +
+                "\nData e Hora: " + dthrReg +
+                "\nStatus: " + status +
+                "\nValor Integral: " + valorIntegral +
+                "\nData Vencimento: " + dataVencimento +
+                "\nTotal Parcelas: " + totalParcelas +
+                "\nUserId: " + userId;
+    }
 }
