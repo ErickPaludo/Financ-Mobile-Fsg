@@ -15,6 +15,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.project.financ.Models.API.HttpRequest;
 import com.project.financ.Models.Credito;
 import com.project.financ.Models.Debito;
 import com.project.financ.Models.Saldo;
@@ -108,18 +109,27 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
+                Object objHttp = new Object();
                 if (Validainput(textTitle.getText().toString(), textValor.getText().toString(), textValorParcela.getText().toString(),textParcelas.getText().toString(), typegasto)) {
                     if (typegasto == 0) {
                         Saldo obj = new Saldo(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), LocalDateTime.now(), "0", 1);
                         ExibeMsg("Debug",obj.toString());
-                        Saldo novo = new Saldo();
+                        objHttp = obj;
                     } else if (typegasto == 0) {
                         Debito obj = new Debito(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), LocalDateTime.now(), "0", 1);
                         ExibeMsg("Debug",obj.toString());
+                        objHttp = obj;
                     } else {
                         Credito obj = new Credito(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), LocalDateTime.now(), "0", 1, Double.parseDouble(textValor.getText().toString()),LocalDateTime.now(), Integer.parseInt(textParcelas.getText().toString()));
                         ExibeMsg("Debug",obj.toString());
+                        objHttp = obj;
                     }
+                    String teste = HttpRequest.Post(objHttp);
+                   // ExibeMsg("Retorno",teste);
+                   // String myegg = HttpRequest.Get();
+                   //  System.out.println(myegg);
+                    // ExibeMsg("Retorno",myegg);
+
                 }
                 else{
                     ExibeMsg("Erro","Entrada de dados Inválidas");
