@@ -1,6 +1,17 @@
 package com.project.financ.Models.API;
 
+import android.os.Build;
+
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+
+import java.lang.reflect.Type;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -56,7 +67,7 @@ public class HttpRequest {
 
             // Criação da requisição POST
             Request request = new Request.Builder()
-                    .url("https://financ.requestcatcher.com/test")
+                    .url("http://192.168.0.14:5102/saldo/cadastro")
                     .post(requestBody)
                     .build();
 
@@ -83,7 +94,18 @@ public class HttpRequest {
     }
 
     public static String objetoParaJson(Object objeto) {
-        Gson gson = new Gson();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            gsonBuilder.registerTypeAdapter(LocalDateTime.class, new JsonSerializer<LocalDateTime>() {
+                @Override
+                public JsonElement serialize(LocalDateTime src, Type typeOfSrc, JsonSerializationContext context) {
+                    return new JsonPrimitive(src.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+                }
+            });
+        }
+        Gson gson = gsonBuilder
+                .create();
+
         return gson.toJson(objeto);
     }
 }

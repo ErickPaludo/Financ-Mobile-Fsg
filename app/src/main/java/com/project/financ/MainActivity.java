@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                         Saldo obj = new Saldo(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), LocalDateTime.now(), "0", 1);
                         ExibeMsg("Debug",obj.toString());
                         objHttp = obj;
-                    } else if (typegasto == 0) {
+                    } else if (typegasto == 1) {
                         Debito obj = new Debito(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), LocalDateTime.now(), "0", 1);
                         ExibeMsg("Debug",obj.toString());
                         objHttp = obj;
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                         objHttp = obj;
                     }
                     String teste = HttpRequest.Post(objHttp);
-                   // ExibeMsg("Retorno",teste);
+                    ExibeMsg("Retorno",teste);
                    // String myegg = HttpRequest.Get();
                    //  System.out.println(myegg);
                     // ExibeMsg("Retorno",myegg);
