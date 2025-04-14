@@ -163,14 +163,23 @@
                 android:text="Cancelar" />
         </LinearLayout>
 
-        <!-- Botão extra -->
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#673AB7"
-            android:text="Dicas de Finanças" />
 
+            <!-- Botão extra -->
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#673AB7"
+                android:text="Dicas de Finanças" />
+
+            <Button
+                android:id="@+id/btnVizualizar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#673AB7"
+                android:text="Vizualizar Gastos" />
     </LinearLayout>
 </FrameLayout>

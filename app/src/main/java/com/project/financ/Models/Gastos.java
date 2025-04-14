@@ -3,13 +3,13 @@ package com.project.financ.Models;
 import java.time.LocalDateTime;
 
 abstract public class Gastos<T>{
-    protected  int id;
-    protected  String titulo;
-    protected  String descricao;
-    protected  double valor;
-    protected  LocalDateTime dthrReg;
-    protected  String status;
-    protected  int userId;
+    public  int id;
+    public  String titulo;
+    public  String descricao;
+    public  double valor;
+    public  LocalDateTime dthrReg;
+    public  String status;
+    public  int userId;
 
     public Gastos(int id, String titulo, String descricao, double valor, LocalDateTime dthrReg, String status, int userId) {
         this.id = id;

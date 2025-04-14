@@ -20,7 +20,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class HttpRequest {
-    public static String Get() {
+    public static String Get(String metodo) {
         // Criando uma nova Thread para evitar NetworkOnMainThreadException
         final String[] resultado = {""};
 
@@ -28,7 +28,7 @@ public class HttpRequest {
             OkHttpClient client = new OkHttpClient();
 
             Request request = new Request.Builder()
-                    .url("https://jsonplaceholder.typicode.com/todos/1")
+                    .url("http://192.168.0.14:5102/ " + metodo + "cadastro")
                     .build();
 
             try (Response response = client.newCall(request).execute()) {

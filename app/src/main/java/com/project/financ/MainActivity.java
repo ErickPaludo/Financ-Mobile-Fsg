@@ -1,5 +1,6 @@
 package com.project.financ;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnDebito;
     Button btnCredito;
     Button btnSalvar;
+    Button btnVizualizar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         btnDebito = (Button)findViewById(R.id.btnDebito);
         btnCredito = (Button)findViewById(R.id.btnCredito);
         btnSalvar = (Button)findViewById(R.id.btnSalvar);
+        btnVizualizar = (Button)findViewById(R.id.btnVizualizar);
 
 
         btnSaldo.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +127,25 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     ExibeMsg("Erro","Entrada de dados Inválidas");
+                }
+            }
+        });
+        btnVizualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent(MainActivity.this, Tabela.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    // Exibe o erro em um AlertDialog para facilitar o diagnóstico
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("Erro")
+                            .setMessage("Ocorreu um erro ao tentar abrir a tela: " + e.getMessage())
+                            .setPositiveButton("OK", null)
+                            .show();
+
+                    // Também pode imprimir o erro no Logcat
+                    e.printStackTrace();
                 }
             }
         });
