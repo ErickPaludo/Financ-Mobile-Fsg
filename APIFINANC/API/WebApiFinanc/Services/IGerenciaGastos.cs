@@ -10,6 +10,7 @@ namespace WebApiFinanc.Services
     public interface IGerenciaGastos
     {
         Credito RegistraCredito(Credito credito);
+        void RegistraCreditoJ(CreditoJava credito);
         Debito RegistraDebito(Debito debito); 
         Saldo RegistraSaldo(Saldo saldo);
         void Excluir(int id,string tipo = "O");

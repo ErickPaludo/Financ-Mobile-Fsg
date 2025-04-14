@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Fullsoft\\Estudos\\API\\WebApiFinanc\\WebApiFinanc.csproj": {}
+    "C:\\Fullsoft\\Estudos\\API\\Financ-Mobile-Fsg\\APIFINANC\\API\\WebApiFinanc\\WebApiFinanc.csproj": {}
   },
   "projects": {
-    "C:\\Fullsoft\\Estudos\\API\\WebApiFinanc\\WebApiFinanc.csproj": {
+    "C:\\Fullsoft\\Estudos\\API\\Financ-Mobile-Fsg\\APIFINANC\\API\\WebApiFinanc\\WebApiFinanc.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Fullsoft\\Estudos\\API\\WebApiFinanc\\WebApiFinanc.csproj",
+        "projectUniqueName": "C:\\Fullsoft\\Estudos\\API\\Financ-Mobile-Fsg\\APIFINANC\\API\\WebApiFinanc\\WebApiFinanc.csproj",
         "projectName": "WebApiFinanc",
-        "projectPath": "C:\\Fullsoft\\Estudos\\API\\WebApiFinanc\\WebApiFinanc.csproj",
+        "projectPath": "C:\\Fullsoft\\Estudos\\API\\Financ-Mobile-Fsg\\APIFINANC\\API\\WebApiFinanc\\WebApiFinanc.csproj",
         "packagesPath": "C:\\Users\\erick.paludo\\.nuget\\packages\\",
-        "outputPath": "C:\\Fullsoft\\Estudos\\API\\WebApiFinanc\\obj\\",
+        "outputPath": "C:\\Fullsoft\\Estudos\\API\\Financ-Mobile-Fsg\\APIFINANC\\API\\WebApiFinanc\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

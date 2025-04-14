@@ -95,6 +95,12 @@ namespace WebApiFinanc.Controllers
         {
             _gerenciamento.RegistraCredito(credito);
             return new CreatedAtRouteResult("ObterCredito", new { id = credito.Id }, credito);
+        } 
+        [HttpPost("cadastroJavaApp")]
+        public ActionResult<IEnumerable<Credito>> CadastraCreditoJapp([FromBody] CreditoJava credito)
+        {
+            _gerenciamento.RegistraCreditoJ(credito);
+            return Ok();
         }
 
         [HttpDelete("deleta/{id:int}")]

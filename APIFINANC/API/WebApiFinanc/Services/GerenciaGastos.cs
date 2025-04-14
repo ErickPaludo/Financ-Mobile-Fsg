@@ -331,5 +331,21 @@ namespace WebApiFinanc.Services
 
             }
         }
+
+        public void RegistraCreditoJ(CreditoJava credito)
+        {
+            var idcreddito = _unit.CreditoRepository.Create(credito.credito);
+            foreach(var parcela in credito.parcelas)
+            {
+                GastosStatus parcelaobj = new GastosStatus
+                {
+                    FkGasto = idcreddito,
+                    Parcela = parcela.Parcela,
+                    Status = parcela.Status
+                };
+                _unit.GastoStatusRepository.Create(parcelaobj);
+            }
+            _unit.Commit();
+        }
     }
 }

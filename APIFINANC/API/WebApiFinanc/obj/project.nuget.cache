@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "x8nEexnKBKM=",
+  "dgSpecHash": "u4vl9+f7xDM=",
   "success": true,
-  "projectFilePath": "C:\\Fullsoft\\Estudos\\API\\WebApiFinanc\\WebApiFinanc.csproj",
+  "projectFilePath": "C:\\Fullsoft\\Estudos\\API\\Financ-Mobile-Fsg\\APIFINANC\\API\\WebApiFinanc\\WebApiFinanc.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\erick.paludo\\.nuget\\packages\\automapper\\14.0.0\\automapper.14.0.0.nupkg.sha512",
     "C:\\Users\\erick.paludo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

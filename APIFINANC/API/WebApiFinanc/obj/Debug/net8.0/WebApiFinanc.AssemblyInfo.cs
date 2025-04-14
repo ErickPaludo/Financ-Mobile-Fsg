@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebApiFinanc")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1fe5d6d80736bb06ed8524c99d7be288206d882a")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebApiFinanc")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebApiFinanc")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
