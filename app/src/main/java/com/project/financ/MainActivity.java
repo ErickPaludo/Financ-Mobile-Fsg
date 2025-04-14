@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 typegasto = 0;
-                ExibeMsg("Debug","Tipo " + typegasto);
+             //  ExibeMsg("Debug","Tipo " + typegasto);
                 btnSaldo.setBackgroundColor(Color.parseColor("#673AB7"));
                 btnDebito.setBackgroundColor(Color.parseColor("#C8C8C8"));
                 btnCredito.setBackgroundColor(Color.parseColor("#C8C8C8")); // Define uma cor em hexadecimal
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 typegasto = 1;
-                ExibeMsg("Debug","Tipo " + typegasto);
+            //    ExibeMsg("Debug","Tipo " + typegasto);
                 btnDebito.setBackgroundColor(Color.parseColor("#673AB7"));
                 btnSaldo.setBackgroundColor(Color.parseColor("#C8C8C8"));
                 btnCredito.setBackgroundColor(Color.parseColor("#C8C8C8")); // Define uma cor em hexadecimal
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 typegasto = 2;
-                ExibeMsg("Debug","Tipo " + typegasto);
+             //   ExibeMsg("Debug","Tipo " + typegasto);
                 btnCredito.setBackgroundColor(Color.parseColor("#673AB7"));
                 btnDebito.setBackgroundColor(Color.parseColor("#C8C8C8"));
                 btnSaldo.setBackgroundColor(Color.parseColor("#C8C8C8")); // Define uma cor em hexadecimal
@@ -113,23 +113,14 @@ public class MainActivity extends AppCompatActivity {
                 if (Validainput(textTitle.getText().toString(), textValor.getText().toString(), textValorParcela.getText().toString(),textParcelas.getText().toString(), typegasto)) {
                     if (typegasto == 0) {
                         Saldo obj = new Saldo(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), LocalDateTime.now(), "0", 1);
-                        ExibeMsg("Debug",obj.toString());
-                        objHttp = obj;
+                        Saldo.Cadastro(obj);
                     } else if (typegasto == 1) {
                         Debito obj = new Debito(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), LocalDateTime.now(), "0", 1);
-                        ExibeMsg("Debug",obj.toString());
-                        objHttp = obj;
+                        Debito.Cadastro(obj);
                     } else {
                         Credito obj = new Credito(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), LocalDateTime.now(), "0", 1, Double.parseDouble(textValor.getText().toString()),LocalDateTime.now(), Integer.parseInt(textParcelas.getText().toString()));
-                        ExibeMsg("Debug",obj.toString());
-                        objHttp = obj;
+                        Credito.Cadastro(obj);
                     }
-                    String teste = HttpRequest.Post(objHttp);
-                    ExibeMsg("Retorno",teste);
-                   // String myegg = HttpRequest.Get();
-                   //  System.out.println(myegg);
-                    // ExibeMsg("Retorno",myegg);
-
                 }
                 else{
                     ExibeMsg("Erro","Entrada de dados Inválidas");
@@ -140,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private boolean Validainput(String titulo,String valor,String valorParcela,String parcela,int tipo) {
-
         boolean sucess = false;
         if(!titulo.isEmpty()){
             if(tipo == 2){

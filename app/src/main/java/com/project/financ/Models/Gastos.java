@@ -2,7 +2,7 @@ package com.project.financ.Models;
 
 import java.time.LocalDateTime;
 
-abstract public class Gastos<T> implements IGastos<T> {
+abstract public class Gastos<T>{
     protected  int id;
     protected  String titulo;
     protected  String descricao;

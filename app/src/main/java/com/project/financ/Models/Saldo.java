@@ -2,6 +2,8 @@ package com.project.financ.Models;
 
 import androidx.annotation.NonNull;
 
+import com.project.financ.Models.API.HttpRequest;
+
 import java.time.LocalDateTime;
 
 public class Saldo extends Gastos<Saldo> {
@@ -25,12 +27,12 @@ public class Saldo extends Gastos<Saldo> {
                 "\nUserId: " + userId;
     }
 
-    @Override
-    public void Cadastro() {
 
+    public static void Cadastro(Saldo obj) {
+        HttpRequest.Post(obj,"Saldo");
     }
 
-    @Override
+
     public Saldo Retorno() {
         return null;
     }

@@ -52,7 +52,7 @@ public class HttpRequest {
 
         return resultado[0];
     }
-    public static String Post(Object objeto) {
+    public static String Post(Object objeto,String metodo) {
         final String[] resultado = {""};
 
         Thread thread = new Thread(() -> {
@@ -67,7 +67,7 @@ public class HttpRequest {
 
             // Criação da requisição POST
             Request request = new Request.Builder()
-                    .url("http://192.168.0.14:5102/saldo/cadastro")
+                    .url("http://192.168.0.14:5102/"+ metodo +"/cadastro")
                     .post(requestBody)
                     .build();
 

@@ -1,6 +1,14 @@
 package com.project.financ.Models;
 
+import android.annotation.SuppressLint;
+
+import com.project.financ.Models.API.CreditoParcelas;
+import com.project.financ.Models.API.CreditoReq;
+import com.project.financ.Models.API.HttpRequest;
+
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Credito extends Gastos<Credito>{
     private double valorIntegral;
@@ -39,12 +47,34 @@ public class Credito extends Gastos<Credito>{
         this.totalParcelas = totalParcelas;
     }
 
-    @Override
-    public void Cadastro() {
 
+     @SuppressLint("NewApi")
+     public static void Cadastro(Credito obj) {
+        int parcelas = obj.totalParcelas;
+
+        if(obj.valor > 0.01 && obj.valorIntegral == 0.01){
+            obj.valorIntegral = obj.valor * obj.totalParcelas;
+        }
+        else{
+            obj.valor = obj.valorIntegral / obj.totalParcelas;
+        }
+
+        obj.dthrReg = obj.dthrReg.plusMonths(1);
+        obj.dataVencimento = obj.dthrReg.plusMonths(obj.totalParcelas - 1);
+        int id = 0;
+
+        ArrayList<CreditoParcelas> listCredito = new ArrayList<CreditoParcelas>();
+        for(int i = 1;i <= parcelas;i++){
+            CreditoParcelas creditoParcelas = new CreditoParcelas();
+            creditoParcelas.parcela = i;
+            creditoParcelas.status = "N";
+            listCredito.add(creditoParcelas);
+        };
+        CreditoReq creditoReq = new CreditoReq(obj,listCredito);
+
+         HttpRequest.Post(creditoReq,"Credito");
     }
 
-    @Override
     public Credito Retorno() {
         return null;
     }

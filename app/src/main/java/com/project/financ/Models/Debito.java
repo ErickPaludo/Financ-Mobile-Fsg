@@ -2,6 +2,8 @@ package com.project.financ.Models;
 
 import androidx.annotation.NonNull;
 
+import com.project.financ.Models.API.HttpRequest;
+
 import java.time.LocalDateTime;
 
 public class Debito extends  Gastos<Debito> {
@@ -19,12 +21,11 @@ public class Debito extends  Gastos<Debito> {
                 "\nStatus: " + status +
                 "\nUserId: " + userId;
     }
-    @Override
-    public void Cadastro() {
-
+    public static void Cadastro(Debito obj) {
+        HttpRequest.Post(obj,"Debito");
     }
 
-    @Override
+
     public Debito Retorno() {
         return null;
     }
