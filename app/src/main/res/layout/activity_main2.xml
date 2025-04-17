@@ -9,19 +9,19 @@
 
     <LinearLayout
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="#DDDDDD"
-            android:padding="16dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginHorizontal="8dp"
-            android:clipToOutline="true"
-            android:elevation="4dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#DDDDDD"
+        android:clipToOutline="true"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:padding="16dp">
         <!-- COMENTADO TEMPORARIAMENTE -->
-            <!--
+        <!--
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
