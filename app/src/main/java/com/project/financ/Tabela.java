@@ -1,6 +1,7 @@
 package com.project.financ;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +35,7 @@ public class Tabela extends AppCompatActivity {
     Button btnSaldo;
     Button btnDebito;
     Button btnCredito;
+    Button btnCadastrar;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class Tabela extends AppCompatActivity {
         btnSaldo = (Button)findViewById(R.id.btnSaldo);
         btnDebito = (Button)findViewById(R.id.btnDebito);
         btnCredito = (Button)findViewById(R.id.btnCredito);
+        btnCadastrar = (Button)findViewById(R.id.btnCadastrar);
         lista = (ListView)findViewById(R.id.listView);
         itens = new ArrayList<>(Arrays.asList());
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itens);
@@ -115,6 +118,25 @@ public class Tabela extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
                 } catch (Exception e) {
                     ExibeMsg("Erro","Ocorreu um erro:" + e.getMessage());
+                }
+            }
+        });
+        btnCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent(Tabela.this, Cadastro.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    // Exibe o erro em um AlertDialog para facilitar o diagnóstico
+                    new AlertDialog.Builder(Tabela.this)
+                            .setTitle("Erro")
+                            .setMessage("Ocorreu um erro ao tentar abrir a tela: " + e.getMessage())
+                            .setPositiveButton("OK", null)
+                            .show();
+
+                    // Também pode imprimir o erro no Logcat
+                    e.printStackTrace();
                 }
             }
         });

@@ -43,7 +43,20 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                try {
+                    Intent intent = new Intent(MainActivity.this, Tabela.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    // Exibe o erro em um AlertDialog para facilitar o diagnóstico
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("Erro")
+                            .setMessage("Ocorreu um erro ao tentar abrir a tela: " + e.getMessage())
+                            .setPositiveButton("OK", null)
+                            .show();
+
+                    // Também pode imprimir o erro no Logcat
+                    e.printStackTrace();
+                }
             }
         });
     }
