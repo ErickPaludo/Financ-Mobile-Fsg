@@ -128,7 +128,9 @@ public class Cadastro extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     Intent intent = new Intent(Cadastro.this, Tabela.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(intent);
+                    finish();
                 } catch (Exception e) {
                     // Exibe o erro em um AlertDialog para facilitar o diagnóstico
                     new AlertDialog.Builder(Cadastro.this)

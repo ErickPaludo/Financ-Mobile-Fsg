@@ -3,14 +3,17 @@ package com.project.financ;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -20,9 +23,13 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.project.financ.Models.API.HttpRequest;
+import com.project.financ.Models.RetornoGastos;
 import com.project.financ.Models.Saldo;
 
 import java.lang.reflect.Type;
+import java.text.DecimalFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,6 +43,7 @@ public class Tabela extends AppCompatActivity {
     Button btnDebito;
     Button btnCredito;
     Button btnCadastrar;
+    TextView txtSaldoVisor;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +61,7 @@ public class Tabela extends AppCompatActivity {
         btnCredito = (Button)findViewById(R.id.btnCredito);
         btnCadastrar = (Button)findViewById(R.id.btnCadastrar);
         lista = (ListView)findViewById(R.id.listView);
+        txtSaldoVisor = (TextView)findViewById((R.id.txtSaldoVisor));
         itens = new ArrayList<>(Arrays.asList());
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itens);
         lista.setAdapter(adapter);
@@ -91,19 +100,26 @@ public class Tabela extends AppCompatActivity {
 
 
         btnPesquisar.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 try {
                    ClearList(adapter);
-
+                    double valorVisor = 0;
                    if(typegasto == 0){
-                       String retorno = HttpRequest.Get("Saldo");
+                       String retorno = "[{\"id\": 1,\"gpId\": \"1\",\"titulo\": \"string\",\"decricao\": \"string\",\"valor\": -200,\"dthr\": \"2025-05-24T19:45:47.267\",\"parcela\": \"1/2\",\"categoria\": \"Crédito\",\"status\": \"Pendente\"},{\"id\": 2,\"gpId\": \"1\",\"titulo\": \"string\",\"decricao\": \"string\",\"valor\": -200,\"dthr\": \"2025-06-24T19:45:47.267\",\"parcela\": \"2/2\",\"categoria\": \"Crédito\",\"status\": \"Pendente\"}]";//HttpRequest.Get("Saldo");
                        Gson gson = new Gson();
-                       Type saldoListType = new TypeToken<ArrayList<Saldo>>() {}.getType();
-                       ArrayList<Saldo> saldo = gson.fromJson(retorno, saldoListType);
+                       Type retornoListType = new TypeToken<ArrayList<RetornoGastos>>() {}.getType();
+                       ArrayList<RetornoGastos> ret = gson.fromJson(retorno, retornoListType);
 
-                       for(var obj : saldo){itens.add(obj.titulo + "|R$" + obj.valor + "|" + obj.dthrReg + "|" + obj.descricao);
+                       for(var obj : ret){
+                           LocalDateTime data = null;
+                           data = LocalDateTime.parse(obj.dthr);
+                           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                           String dataFormatada = data.format(formatter);
+                           itens.add(obj.titulo + "\n" + obj.descricao  + "\nR$" + obj.valor + "\n" + dataFormatada );
 
+                           valorVisor = valorVisor + obj.valor;
                        }
 
                    } else if (typegasto == 1) {
@@ -112,10 +128,11 @@ public class Tabela extends AppCompatActivity {
                    else{
 
                    }
-
-                    itens.add("e");
-
+                  //  itens.add("Teste");
                     adapter.notifyDataSetChanged();
+                    DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
+                    txtSaldoVisor.setText("R$ " + decimalFormat.format(valorVisor));
+
                 } catch (Exception e) {
                     ExibeMsg("Erro","Ocorreu um erro:" + e.getMessage());
                 }

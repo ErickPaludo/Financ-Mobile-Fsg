@@ -45,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     Intent intent = new Intent(MainActivity.this, Tabela.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
+
                 } catch (Exception e) {
                     // Exibe o erro em um AlertDialog para facilitar o diagnóstico
                     new AlertDialog.Builder(MainActivity.this)
