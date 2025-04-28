@@ -1,16 +1,20 @@
 package com.project.financ;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.RequiresApi;
@@ -20,6 +24,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.project.financ.Models.API.HttpRequest;
@@ -28,22 +33,27 @@ import com.project.financ.Models.Saldo;
 
 import java.lang.reflect.Type;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Tabela extends AppCompatActivity {
     int typegasto = 0;
     List<String> itens;
     ListView lista;
     Button btnPesquisar;
-    Button btnSaldo;
-    Button btnDebito;
-    Button btnCredito;
     Button btnCadastrar;
     TextView txtSaldoVisor;
+    Spinner combo;
+    EditText btnDtIni;
+    EditText btnDtFim;
+    String[] itensCombo = {"Todos", "Saldo", "Débito", "Crédito"};
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,48 +63,76 @@ public class Tabela extends AppCompatActivity {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tabela), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    this,
+                    android.R.layout.simple_spinner_item,
+                    itensCombo
+            );
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            combo.setAdapter(adapter);
             return insets;
         });
+
+
         btnPesquisar = (Button)findViewById((R.id.btnPesquisar));
-        btnSaldo = (Button)findViewById(R.id.btnSaldo);
-        btnDebito = (Button)findViewById(R.id.btnDebito);
-        btnCredito = (Button)findViewById(R.id.btnCredito);
+
         btnCadastrar = (Button)findViewById(R.id.btnCadastrar);
         lista = (ListView)findViewById(R.id.listView);
         txtSaldoVisor = (TextView)findViewById((R.id.txtSaldoVisor));
         itens = new ArrayList<>(Arrays.asList());
+        combo = (Spinner)findViewById(R.id.combo);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itens);
         lista.setAdapter(adapter);
+        btnDtIni = (EditText)findViewById(R.id.btnDtIni);
+        btnDtFim = (EditText)findViewById(R.id.btnDtFim);
 
-        btnSaldo.setOnClickListener(new View.OnClickListener() {
+        btnDtIni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                typegasto = 0;
-                //  ExibeMsg("Debug","Tipo " + typegasto);
-                btnSaldo.setBackgroundColor(Color.parseColor("#673AB7"));
-                btnDebito.setBackgroundColor(Color.parseColor("#C8C8C8"));
-                btnCredito.setBackgroundColor(Color.parseColor("#C8C8C8")); // Define uma cor em hexadecimal
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
 
+                // Abrir o DatePickerDialog
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        Tabela.this,
+                        (view, selectedYear, selectedMonth, selectedDay) -> {
+                            // Configurar a data selecionada no EditText
+                            String data = String.format("%02d/%02d/%d", selectedDay, selectedMonth + 1, selectedYear);
+                            btnDtIni.setText(data);
+                        },
+                        year,
+                        month,
+                        day
+                );
+
+                datePickerDialog.show();
             }
         });
-        btnDebito.setOnClickListener(new View.OnClickListener() {
+        btnDtFim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                typegasto = 1;
-                //    ExibeMsg("Debug","Tipo " + typegasto);
-                btnDebito.setBackgroundColor(Color.parseColor("#673AB7"));
-                btnSaldo.setBackgroundColor(Color.parseColor("#C8C8C8"));
-                btnCredito.setBackgroundColor(Color.parseColor("#C8C8C8")); // Define uma cor em hexadecimal
-            }
-        });
-        btnCredito.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                typegasto = 2;
-                //   ExibeMsg("Debug","Tipo " + typegasto);
-                btnCredito.setBackgroundColor(Color.parseColor("#673AB7"));
-                btnDebito.setBackgroundColor(Color.parseColor("#C8C8C8"));
-                btnSaldo.setBackgroundColor(Color.parseColor("#C8C8C8")); // Define uma cor em hexadecimal
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                // Abrir o DatePickerDialog
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        Tabela.this,
+                        (view, selectedYear, selectedMonth, selectedDay) -> {
+                            // Configurar a data selecionada no EditText
+                            String data = String.format("%02d/%02d/%d", selectedDay, selectedMonth + 1, selectedYear);
+                            btnDtFim.setText(data);
+                        },
+                        year,
+                        month,
+                        day
+                );
+
+                datePickerDialog.show();
             }
         });
 
@@ -138,6 +176,33 @@ public class Tabela extends AppCompatActivity {
                 }
             }
         });
+
+        combo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String itemSelecionado = parent.getItemAtPosition(position).toString();
+               if(itemSelecionado.equals("Todos")) {
+               typegasto = 0;
+               }
+               else if(itemSelecionado.equals("Saldo")){
+                   typegasto = 1;
+               }
+               else if(itemSelecionado.equals("Débito")){
+                   typegasto = 2;
+               }
+               else if(itemSelecionado.equals("Crédito")){
+                   typegasto = 3;
+               }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                typegasto = 0;
+            }
+
+        });
+
+
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

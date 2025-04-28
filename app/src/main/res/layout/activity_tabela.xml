@@ -24,32 +24,12 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="0dp">
-
-            <Button
-                android:id="@+id/btnSaldo"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:backgroundTint="#673AB7"
-                android:text="Saldo" />
-
-            <Button
-                android:id="@+id/btnDebito"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:backgroundTint="#C8C8C8"
-                android:text="Débito" />
-
-            <Button
-                android:id="@+id/btnCredito"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:backgroundTint="#C8C8C8"
-                android:text="Crédito" />
-        </LinearLayout>
+            android:padding="0dp"/>
+          <Spinner android:id="@+id/combo"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="16dp"
+            android:padding="8dp" />
 
         <!-- Campos de Data -->
         <TextView
@@ -68,14 +48,19 @@
             android:layout_marginTop="16dp"
             android:gravity="center">
 
+
+
             <EditText
+
                 android:id="@+id/btnDtIni"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:minHeight="48dp"
                 android:hint="Data Ini"
-                android:inputType="date" />
+                android:inputType="date"
+                android:focusable="false"
+                android:clickable="true"/>
 
             <EditText
                 android:id="@+id/btnDtFim"
@@ -84,7 +69,9 @@
                 android:layout_weight="1"
                 android:hint="Data Fim"
                 android:minHeight="48dp"
-                android:inputType="date"/>
+                android:inputType="date"
+                android:focusable="false"
+                android:clickable="true"/>
         </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
