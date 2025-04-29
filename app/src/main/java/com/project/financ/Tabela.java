@@ -145,7 +145,7 @@ public class Tabela extends AppCompatActivity {
                    ClearList(adapter);
                     double valorVisor = 0;
                    if(typegasto == 0){
-                       String retorno = "[{\"id\": 1,\"gpId\": \"1\",\"titulo\": \"string\",\"decricao\": \"string\",\"valor\": -200,\"dthr\": \"2025-05-24T19:45:47.267\",\"parcela\": \"1/2\",\"categoria\": \"Crédito\",\"status\": \"Pendente\"},{\"id\": 2,\"gpId\": \"1\",\"titulo\": \"string\",\"decricao\": \"string\",\"valor\": -200,\"dthr\": \"2025-06-24T19:45:47.267\",\"parcela\": \"2/2\",\"categoria\": \"Crédito\",\"status\": \"Pendente\"}]";//HttpRequest.Get("Saldo");
+                       String retorno = HttpRequest.Get("&categoria=S");
                        Gson gson = new Gson();
                        Type retornoListType = new TypeToken<ArrayList<RetornoGastos>>() {}.getType();
                        ArrayList<RetornoGastos> ret = gson.fromJson(retorno, retornoListType);

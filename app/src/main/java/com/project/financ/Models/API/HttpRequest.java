@@ -21,19 +21,19 @@ import okhttp3.Response;
 
 public class HttpRequest {
     public static String Get(String metodo) {
-        // Criando uma nova Thread para evitar NetworkOnMainThreadException
-        final String[] resultado = {""};
+        final String[] resultado = {""}; // vai guardar o retorno aqui
 
         Thread thread = new Thread(() -> {
             OkHttpClient client = new OkHttpClient();
 
             Request request = new Request.Builder()
-                    .url("http://192.168.0.14:5102/ " + metodo + "cadastro")
+                    .url("http://100.96.1.6:5102/geral/retorno?iduser=1&PageNumber=1&PageSize=50&DataIni=11%2F11%2F2024&DataFim=11%2F11%2F2025")
                     .build();
 
             try (Response response = client.newCall(request).execute()) {
                 if (response.isSuccessful()) {
-                    resultado[0] = "Sucesso: " + response.body().string();
+                    String bodyString = response.body().string(); // Lê apenas uma vez
+                    resultado[0] = bodyString; // Armazena o sucesso
                 } else {
                     resultado[0] = "Erro na chamada da API: Código de resposta " + response.code();
                 }
@@ -50,8 +50,9 @@ public class HttpRequest {
             return "Erro ao aguardar a execução da thread: " + e.getMessage();
         }
 
-        return resultado[0];
+        return resultado[0]; // Retorna o que foi preenchido lá
     }
+
     public static String Post(Object objeto,String metodo) {
         final String[] resultado = {""};
 
@@ -67,7 +68,7 @@ public class HttpRequest {
 
             // Criação da requisição POST
             Request request = new Request.Builder()
-                    .url("http://192.168.0.14:5102/"+ metodo +"/cadastro")
+                    .url("http://100.96.1.6:5102/"+ metodo +"/cadastro")
                     .post(requestBody)
                     .build();
 
