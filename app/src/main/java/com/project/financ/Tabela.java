@@ -3,6 +3,7 @@ package com.project.financ;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ import com.project.financ.Models.API.HttpRequest;
 import com.project.financ.Models.RetornoGastos;
 import com.project.financ.Models.Saldo;
 
+import java.io.File;
 import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -49,6 +51,7 @@ public class Tabela extends AppCompatActivity {
     ListView lista;
     Button btnPesquisar;
     Button btnCadastrar;
+    Button btnSair;
     TextView txtSaldoVisor;
     Spinner combo;
     EditText btnDtIni;
@@ -86,6 +89,43 @@ public class Tabela extends AppCompatActivity {
         lista.setAdapter(adapter);
         btnDtIni = (EditText)findViewById(R.id.btnDtIni);
         btnDtFim = (EditText)findViewById(R.id.btnDtFim);
+        btnSair = (Button) findViewById(R.id.btnSair);
+
+        btnSair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    File file = new File(getCacheDir(), "financ_base.db");
+                    SQLiteDatabase database = SQLiteDatabase.openOrCreateDatabase(file, null);
+
+                    // Deletar registros da tabela
+                    String whereClause = "id = ?";
+                    String[] whereArgs = new String[] { "1" }; // Substitua "1" pelo ID que deseja deletar
+
+                    int rowsDeleted = database.delete("usuario_tk", whereClause, whereArgs);
+
+                    System.out.println("Linhas deletadas: " + rowsDeleted);
+
+                    // Fechar o banco de dados
+                    database.close();
+
+                    Intent intent = new Intent(Tabela.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+
+                } catch (Exception e) {
+                    // Exibe o erro em um AlertDialog para facilitar o diagnóstico
+                    new AlertDialog.Builder(Tabela.this)
+                            .setTitle("Erro")
+                            .setMessage("Ocorreu um erro ao tentar abrir a tela: " + e.getMessage())
+                            .setPositiveButton("OK", null)
+                            .show();
+
+                    // Também pode imprimir o erro no Logcat
+                    e.printStackTrace();
+                }
+            }
+        });
 
         btnDtIni.setOnClickListener(new View.OnClickListener() {
             @Override

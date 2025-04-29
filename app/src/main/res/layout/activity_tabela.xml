@@ -9,17 +9,25 @@
     android:padding="16dp">
 
         <!-- Título -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Título"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:padding="8dp" />
 
-        <!-- Tabs -->
-        <LinearLayout
+    <!-- Tabs -->
+
+    <Button
+        android:id="@+id/btnSair"
+        android:layout_width="79dp"
+        android:layout_height="wrap_content"
+        android:text="Sair" />
+
+    <TextView
+        android:layout_width="382dp"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Título"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -92,7 +100,7 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="362dp"
+        android:layout_height="325dp"
         android:divider="#CCCCCC"
         android:dividerHeight="1dp" />
 
@@ -120,7 +128,6 @@
                 android:layout_height="wrap_content"
                 android:text="Cadastrar" />
         </LinearLayout>
-
 
 
 </LinearLayout>
