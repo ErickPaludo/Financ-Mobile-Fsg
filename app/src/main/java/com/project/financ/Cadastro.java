@@ -16,6 +16,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.project.financ.Models.API.TokenStatic;
 import com.project.financ.Models.Credito;
 import com.project.financ.Models.Debito;
 import com.project.financ.Models.Saldo;
@@ -108,15 +109,20 @@ public class Cadastro extends AppCompatActivity {
                 Object objHttp = new Object();
                 if (Validainput(textTitle.getText().toString(), textValor.getText().toString(), textValorParcela.getText().toString(),textParcelas.getText().toString(), typegasto)) {
                     if (typegasto == 0) {
-                        Saldo obj = new Saldo(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), LocalDateTime.now(), "0", 1);
+                        Saldo obj = new Saldo(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), LocalDateTime.now(), "0", TokenStatic.getUser());
                         Saldo.Cadastro(obj);
                     } else if (typegasto == 1) {
-                        Debito obj = new Debito(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), LocalDateTime.now(), "0", 1);
+                        Debito obj = new Debito(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), LocalDateTime.now(), "0", TokenStatic.getUser());
                         Debito.Cadastro(obj);
                     } else {
-                        Credito obj = new Credito(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), LocalDateTime.now(), "0", 1, Double.parseDouble(textValor.getText().toString()),LocalDateTime.now(), Integer.parseInt(textParcelas.getText().toString()));
+                        Credito obj = new Credito(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), LocalDateTime.now(), "0", TokenStatic.getUser(), Double.parseDouble(textValor.getText().toString()),LocalDateTime.now(), Integer.parseInt(textParcelas.getText().toString()));
                         Credito.Cadastro(obj);
                     }
+                    textTitle.setText("");
+                    textDesc.setText("");
+                    textData.setText(LocalDateTime.now().toString());
+                    textValor.setText("");
+                    textValorParcela.setText("");
                 }
                 else{
                     ExibeMsg("Erro","Entrada de dados Inválidas");

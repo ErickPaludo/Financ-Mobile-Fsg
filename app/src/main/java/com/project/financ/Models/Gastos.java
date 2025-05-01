@@ -9,9 +9,9 @@ abstract public class Gastos<T>{
     public  double valor;
     public  LocalDateTime dthrReg;
     public  String status;
-    public  int userId;
+    public  String userId;
 
-    public Gastos(int id, String titulo, String descricao, double valor, LocalDateTime dthrReg, String status, int userId) {
+    public Gastos(int id, String titulo, String descricao, double valor, LocalDateTime dthrReg, String status, String userId) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -73,11 +73,11 @@ abstract public class Gastos<T>{
         this.status = status;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }

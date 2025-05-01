@@ -29,6 +29,7 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.project.financ.Models.API.HttpRequest;
+import com.project.financ.Models.API.TokenStatic;
 import com.project.financ.Models.RetornoGastos;
 import com.project.financ.Models.Saldo;
 
@@ -100,7 +101,7 @@ public class Tabela extends AppCompatActivity {
 
                     // Deletar registros da tabela
                     String whereClause = "id = ?";
-                    String[] whereArgs = new String[] { "1" }; // Substitua "1" pelo ID que deseja deletar
+                    String[] whereArgs = new String[] {TokenStatic.getUser()};
 
                     int rowsDeleted = database.delete("usuario_tk", whereClause, whereArgs);
 
@@ -185,7 +186,7 @@ public class Tabela extends AppCompatActivity {
                    ClearList(adapter);
                     double valorVisor = 0;
                    if(typegasto == 0){
-                       String retorno = HttpRequest.Get("&categoria=S");
+                       String retorno = HttpRequest.Get("");
                        Gson gson = new Gson();
                        Type retornoListType = new TypeToken<ArrayList<RetornoGastos>>() {}.getType();
                        ArrayList<RetornoGastos> ret = gson.fromJson(retorno, retornoListType);
@@ -201,10 +202,52 @@ public class Tabela extends AppCompatActivity {
                        }
 
                    } else if (typegasto == 1) {
+                       String retorno = HttpRequest.Get("&categoria=S");
+                       Gson gson = new Gson();
+                       Type retornoListType = new TypeToken<ArrayList<RetornoGastos>>() {}.getType();
+                       ArrayList<RetornoGastos> ret = gson.fromJson(retorno, retornoListType);
 
+                       for(var obj : ret){
+                           LocalDateTime data = null;
+                           data = LocalDateTime.parse(obj.dthr);
+                           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                           String dataFormatada = data.format(formatter);
+                           itens.add(obj.titulo + "\n" + obj.descricao  + "\nR$" + obj.valor + "\n" + dataFormatada );
+
+                           valorVisor = valorVisor + obj.valor;
+                       }
+                   }
+                   else if (typegasto == 2){
+                       String retorno = HttpRequest.Get("&categoria=D");
+                       Gson gson = new Gson();
+                       Type retornoListType = new TypeToken<ArrayList<RetornoGastos>>() {}.getType();
+                       ArrayList<RetornoGastos> ret = gson.fromJson(retorno, retornoListType);
+
+                       for(var obj : ret){
+                           LocalDateTime data = null;
+                           data = LocalDateTime.parse(obj.dthr);
+                           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                           String dataFormatada = data.format(formatter);
+                           itens.add(obj.titulo + "\n" + obj.descricao  + "\nR$" + obj.valor + "\n" + dataFormatada );
+
+                           valorVisor = valorVisor + obj.valor;
+                       }
                    }
                    else{
+                       String retorno = HttpRequest.Get("&categoria=C");
+                       Gson gson = new Gson();
+                       Type retornoListType = new TypeToken<ArrayList<RetornoGastos>>() {}.getType();
+                       ArrayList<RetornoGastos> ret = gson.fromJson(retorno, retornoListType);
 
+                       for(var obj : ret){
+                           LocalDateTime data = null;
+                           data = LocalDateTime.parse(obj.dthr);
+                           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                           String dataFormatada = data.format(formatter);
+                           itens.add(obj.titulo + "\n" + obj.descricao  + "\nR$" + obj.valor + "\n" + dataFormatada );
+
+                           valorVisor = valorVisor + obj.valor;
+                       }
                    }
                   //  itens.add("Teste");
                     adapter.notifyDataSetChanged();

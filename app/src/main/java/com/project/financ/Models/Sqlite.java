@@ -15,7 +15,7 @@ public class Sqlite extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE = "CREATE TABLE usuario_tk (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "id String, " +
                 "user TEXT, " +
                 "token TEXT, " + "token_refresh TEXT)";
         db.execSQL(CREATE_TABLE);

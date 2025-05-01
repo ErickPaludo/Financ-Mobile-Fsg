@@ -15,7 +15,7 @@ public class Credito extends Gastos<Credito>{
     private LocalDateTime dataVencimento;
     private int totalParcelas;
 
-    public Credito(int id, String titulo, String descricao, double valor, LocalDateTime dthrReg, String status, int userId,
+    public Credito(int id, String titulo, String descricao, double valor, LocalDateTime dthrReg, String status, String userId,
                    double valorIntegral, LocalDateTime dataVencimento, int totalParcelas) {
         super(id, titulo, descricao, valor, dthrReg, status, userId);
         this.valorIntegral = valorIntegral;
@@ -72,7 +72,7 @@ public class Credito extends Gastos<Credito>{
         };
         CreditoReq creditoReq = new CreditoReq(obj,listCredito);
 
-         HttpRequest.Post(creditoReq,"Credito");
+         HttpRequest.Post(creditoReq,"credito/cadastro");
     }
 
     public Credito Retorno() {

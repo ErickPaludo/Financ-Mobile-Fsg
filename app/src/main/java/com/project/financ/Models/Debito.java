@@ -7,7 +7,7 @@ import com.project.financ.Models.API.HttpRequest;
 import java.time.LocalDateTime;
 
 public class Debito extends  Gastos<Debito> {
-    public Debito(int id, String titulo, String descricao, double valor, LocalDateTime dthrReg, String status, int userId) {
+    public Debito(int id, String titulo, String descricao, double valor, LocalDateTime dthrReg, String status, String userId) {
         super(id, titulo, descricao, valor, dthrReg, status, userId);
     }
     @NonNull
@@ -22,7 +22,7 @@ public class Debito extends  Gastos<Debito> {
                 "\nUserId: " + userId;
     }
     public static void Cadastro(Debito obj) {
-        HttpRequest.Post(obj,"Debito");
+        HttpRequest.Post(obj,"debito/cadastro");
     }
 
 
