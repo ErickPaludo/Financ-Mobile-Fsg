@@ -196,8 +196,12 @@ public class Tabela extends AppCompatActivity {
                            data = LocalDateTime.parse(obj.dthr);
                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
                            String dataFormatada = data.format(formatter);
-                           itens.add(obj.titulo + "\n" + obj.descricao  + "\nR$" + obj.valor + "\n" + dataFormatada );
-
+                           if(obj.categoria.equals("c")) {
+                               itens.add(obj.titulo + "\n" + obj.descricao  + "\nR$" + obj.valor + "\n" + dataFormatada );
+                           }
+                           else {
+                               itens.add("ID: " + obj.gpId + "\n" + obj.titulo + "\n" + obj.descricao  + "\nParcelas: " + obj.parcela + "\nR$" + obj.valor + "\n" + dataFormatada );
+                           }
                            valorVisor = valorVisor + obj.valor;
                        }
 
@@ -244,8 +248,7 @@ public class Tabela extends AppCompatActivity {
                            data = LocalDateTime.parse(obj.dthr);
                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
                            String dataFormatada = data.format(formatter);
-                           itens.add(obj.titulo + "\n" + obj.descricao  + "\nR$" + obj.valor + "\n" + dataFormatada );
-
+                           itens.add("ID: " + obj.gpId + "\n" + obj.titulo + "\n" + obj.descricao  + "\nParcelas: " + obj.parcela + "\nR$" + obj.valor + "\n" + dataFormatada );
                            valorVisor = valorVisor + obj.valor;
                        }
                    }

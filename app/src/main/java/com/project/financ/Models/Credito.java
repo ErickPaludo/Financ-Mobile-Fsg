@@ -72,7 +72,7 @@ public class Credito extends Gastos<Credito>{
         };
         CreditoReq creditoReq = new CreditoReq(obj,listCredito);
 
-         HttpRequest.Post(creditoReq,"credito/cadastro");
+         HttpRequest.Post(creditoReq,"api/FinancCredito/cadastro");
     }
 
     public Credito Retorno() {
