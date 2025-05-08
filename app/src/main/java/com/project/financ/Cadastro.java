@@ -1,5 +1,6 @@
 package com.project.financ;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -21,7 +22,15 @@ import com.project.financ.Models.Credito;
 import com.project.financ.Models.Debito;
 import com.project.financ.Models.Saldo;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
+import java.util.Calendar;
 
 public class Cadastro extends AppCompatActivity {
 
@@ -43,6 +52,11 @@ public class Cadastro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_cadastro);
+
+        Calendar hoje = Calendar.getInstance();
+        SimpleDateFormat formato = new SimpleDateFormat("MM/dd/yyyy");
+        String dataAtual = formato.format(hoje.getTime());
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.cadastro), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -62,6 +76,7 @@ public class Cadastro extends AppCompatActivity {
         btnSalvar = (Button)findViewById(R.id.btnSalvar);
         btnVizualizar = (Button)findViewById(R.id.btnVizualizar);
 
+        textData.setText(dataAtual);
         btnSaldo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +103,30 @@ public class Cadastro extends AppCompatActivity {
                 textParcelas.setVisibility(View.GONE);
             }
         });
+        textData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                // Abrir o DatePickerDialog
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        Cadastro.this,
+                        (view, selectedYear, selectedMonth, selectedDay) -> {
+                            // Configurar a data selecionada no EditText
+                            String data = String.format("%02d/%02d/%d", selectedMonth + 1,selectedDay, selectedYear);
+                            textData.setText(data);
+                        },
+                        year,
+                        month,
+                        day
+                );
+
+                datePickerDialog.show();
+            }
+        });
         btnCredito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,19 +147,40 @@ public class Cadastro extends AppCompatActivity {
             public void onClick(View v) {
                 Object objHttp = new Object();
                 if (Validainput(textTitle.getText().toString(), textValor.getText().toString(), textValorParcela.getText().toString(),textParcelas.getText().toString(), typegasto)) {
+
+                    String textDataStr = textData.getText().toString(); // MM/dd/yyyy
+
+                    // Definir formato de entrada
+                    DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                    LocalDate dataLocal = LocalDate.parse(textDataStr, inputFormatter);
+
+                    // Adicionar um horário padrão (meio-dia, por exemplo)
+                    LocalDateTime dataCompleta = dataLocal.atTime(12, 0);
+
+                    // Definir formato de saída para ISO 8601
+                    DateTimeFormatter isoFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                    String dataIso = dataCompleta.atOffset(ZoneOffset.UTC).format(isoFormatter);
+
+
                     if (typegasto == 0) {
-                        Saldo obj = new Saldo(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), LocalDateTime.now(), "0", TokenStatic.getUser());
+                        Saldo obj = new Saldo(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), dataIso, "0", TokenStatic.getUser());
                         Saldo.Cadastro(obj);
                     } else if (typegasto == 1) {
-                        Debito obj = new Debito(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), LocalDateTime.now(), "0", TokenStatic.getUser());
+                        Debito obj = new Debito(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), dataIso, "0", TokenStatic.getUser());
                         Debito.Cadastro(obj);
                     } else {
-                        Credito obj = new Credito(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValor.getText().toString()), LocalDateTime.now(), "0", TokenStatic.getUser(), Double.parseDouble(textValor.getText().toString()),LocalDateTime.now(), Integer.parseInt(textParcelas.getText().toString()));
+                        if(textValorParcela.getText().toString().isEmpty()){
+                            textValorParcela.setText("0.01");
+                        }
+                        else{
+                            textValor.setText("0.01");
+                        }
+                        Credito obj = new Credito(0, textTitle.getText().toString(), textDesc.getText().toString(), Double.parseDouble(textValorParcela.getText().toString()), dataIso, "0", TokenStatic.getUser(), Double.parseDouble(textValor.getText().toString()),LocalDateTime.now(), Integer.parseInt(textParcelas.getText().toString()));
                         Credito.Cadastro(obj);
                     }
                     textTitle.setText("");
                     textDesc.setText("");
-                    textData.setText(LocalDateTime.now().toString());
+                    textData.setText(dataAtual);
                     textValor.setText("");
                     textValorParcela.setText("");
                 }

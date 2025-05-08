@@ -37,8 +37,10 @@ import java.io.File;
 import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -64,6 +66,19 @@ public class Tabela extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_tabela);
+
+        Calendar hoje = Calendar.getInstance();
+
+        // Definindo o primeiro dia do mês
+        hoje.set(Calendar.DAY_OF_MONTH, 1);
+        String primeiroDia = new SimpleDateFormat("MM/dd/yyyy").format(hoje.getTime());
+
+        // Definindo o último dia do mês
+        hoje.set(Calendar.DAY_OF_MONTH, hoje.getActualMaximum(Calendar.DAY_OF_MONTH));
+        String ultimoDia = new SimpleDateFormat("MM/dd/yyyy").format(hoje.getTime());
+
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tabela), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -79,6 +94,7 @@ public class Tabela extends AppCompatActivity {
         });
 
 
+
         btnPesquisar = (Button)findViewById((R.id.btnPesquisar));
 
         btnCadastrar = (Button)findViewById(R.id.btnCadastrar);
@@ -91,7 +107,8 @@ public class Tabela extends AppCompatActivity {
         btnDtIni = (EditText)findViewById(R.id.btnDtIni);
         btnDtFim = (EditText)findViewById(R.id.btnDtFim);
         btnSair = (Button) findViewById(R.id.btnSair);
-
+        btnDtIni.setText(primeiroDia);
+        btnDtFim.setText(ultimoDia);
         btnSair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,7 +158,7 @@ public class Tabela extends AppCompatActivity {
                         Tabela.this,
                         (view, selectedYear, selectedMonth, selectedDay) -> {
                             // Configurar a data selecionada no EditText
-                            String data = String.format("%02d/%02d/%d", selectedDay, selectedMonth + 1, selectedYear);
+                            String data = String.format("%02d/%02d/%d", selectedMonth + 1, selectedDay, selectedYear);
                             btnDtIni.setText(data);
                         },
                         year,
@@ -165,7 +182,7 @@ public class Tabela extends AppCompatActivity {
                         Tabela.this,
                         (view, selectedYear, selectedMonth, selectedDay) -> {
                             // Configurar a data selecionada no EditText
-                            String data = String.format("%02d/%02d/%d", selectedDay, selectedMonth + 1, selectedYear);
+                            String data = String.format("%02d/%02d/%d", selectedMonth + 1,selectedDay, selectedYear);
                             btnDtFim.setText(data);
                         },
                         year,
@@ -185,8 +202,12 @@ public class Tabela extends AppCompatActivity {
                 try {
                    ClearList(adapter);
                     double valorVisor = 0;
+                    String dataIni = btnDtIni.getText().toString().trim().replace("/", "%2F");
+                    String dataFim = btnDtFim.getText().toString().trim().replace("/", "%2F");
+
+                    String dataGet = "DataIni=" + dataIni + "&DataFim=" + dataFim;
                    if(typegasto == 0){
-                       String retorno = HttpRequest.Get("");
+                       String retorno = HttpRequest.Get(dataGet);
                        Gson gson = new Gson();
                        Type retornoListType = new TypeToken<ArrayList<RetornoGastos>>() {}.getType();
                        ArrayList<RetornoGastos> ret = gson.fromJson(retorno, retornoListType);
@@ -206,7 +227,7 @@ public class Tabela extends AppCompatActivity {
                        }
 
                    } else if (typegasto == 1) {
-                       String retorno = HttpRequest.Get("&categoria=S");
+                       String retorno = HttpRequest.Get(dataGet + "&categoria=S");
                        Gson gson = new Gson();
                        Type retornoListType = new TypeToken<ArrayList<RetornoGastos>>() {}.getType();
                        ArrayList<RetornoGastos> ret = gson.fromJson(retorno, retornoListType);
@@ -222,7 +243,7 @@ public class Tabela extends AppCompatActivity {
                        }
                    }
                    else if (typegasto == 2){
-                       String retorno = HttpRequest.Get("&categoria=D");
+                       String retorno = HttpRequest.Get(dataGet + "&categoria=D");
                        Gson gson = new Gson();
                        Type retornoListType = new TypeToken<ArrayList<RetornoGastos>>() {}.getType();
                        ArrayList<RetornoGastos> ret = gson.fromJson(retorno, retornoListType);
@@ -238,7 +259,7 @@ public class Tabela extends AppCompatActivity {
                        }
                    }
                    else{
-                       String retorno = HttpRequest.Get("&categoria=C");
+                       String retorno = HttpRequest.Get(dataGet +"&categoria=C");
                        Gson gson = new Gson();
                        Type retornoListType = new TypeToken<ArrayList<RetornoGastos>>() {}.getType();
                        ArrayList<RetornoGastos> ret = gson.fromJson(retorno, retornoListType);

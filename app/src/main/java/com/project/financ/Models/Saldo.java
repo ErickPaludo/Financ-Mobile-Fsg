@@ -7,7 +7,7 @@ import com.project.financ.Models.API.HttpRequest;
 import java.time.LocalDateTime;
 
 public class Saldo extends Gastos<Saldo> {
-    public Saldo(int id, String titulo, String descricao, double valor, LocalDateTime dthrReg, String status, String userId) {
+    public Saldo(int id, String titulo, String descricao, double valor, String dthrReg, String status, String userId) {
         super(id, titulo, descricao, valor, dthrReg, status, userId);
     }
 

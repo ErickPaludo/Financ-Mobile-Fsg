@@ -15,7 +15,7 @@ public class Credito extends Gastos<Credito>{
     private LocalDateTime dataVencimento;
     private int totalParcelas;
 
-    public Credito(int id, String titulo, String descricao, double valor, LocalDateTime dthrReg, String status, String userId,
+    public Credito(int id, String titulo, String descricao, double valor, String dthrReg, String status, String userId,
                    double valorIntegral, LocalDateTime dataVencimento, int totalParcelas) {
         super(id, titulo, descricao, valor, dthrReg, status, userId);
         this.valorIntegral = valorIntegral;
@@ -59,8 +59,7 @@ public class Credito extends Gastos<Credito>{
             obj.valor = obj.valorIntegral / obj.totalParcelas;
         }
 
-        obj.dthrReg = obj.dthrReg.plusMonths(1);
-        obj.dataVencimento = obj.dthrReg.plusMonths(obj.totalParcelas - 1);
+
         int id = 0;
 
         ArrayList<CreditoParcelas> listCredito = new ArrayList<CreditoParcelas>();

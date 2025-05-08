@@ -7,11 +7,11 @@ abstract public class Gastos<T>{
     public  String titulo;
     public  String descricao;
     public  double valor;
-    public  LocalDateTime dthrReg;
+    public  String dthrReg;
     public  String status;
     public  String userId;
 
-    public Gastos(int id, String titulo, String descricao, double valor, LocalDateTime dthrReg, String status, String userId) {
+    public Gastos(int id, String titulo, String descricao, double valor, String dthrReg, String status, String userId) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -57,11 +57,11 @@ abstract public class Gastos<T>{
         this.valor = valor;
     }
 
-    public LocalDateTime getDthrReg() {
+    public String getDthrReg() {
         return dthrReg;
     }
 
-    public void setDthrReg(LocalDateTime dthrReg) {
+    public void setDthrReg(String dthrReg) {
         this.dthrReg = dthrReg;
     }
 

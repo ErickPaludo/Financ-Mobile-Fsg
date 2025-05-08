@@ -27,7 +27,7 @@ public class HttpRequest {
             OkHttpClient client = new OkHttpClient();
 
             Request request = new Request.Builder()
-                    .url("http://100.96.1.6:5102/geral/retorno?iduser="+TokenStatic.getUser()+"&PageNumber=1&PageSize=50&DataIni=11%2F11%2F2024&DataFim=11%2F11%2F2025"+metodo)
+                    .url("http://100.96.1.2:3000/geral/retorno?iduser="+TokenStatic.getUser()+"&PageNumber=1&PageSize=50&"+metodo)
                     .addHeader("Authorization", "Bearer " + TokenStatic.getToken())
                     .build();
 
@@ -69,7 +69,7 @@ public class HttpRequest {
 
             // Criação da requisição POST
             Request request = new Request.Builder()
-                    .url("http://100.96.1.6:5102/"+ metodo)
+                    .url("http://100.96.1.2:3000/"+ metodo)
                     .addHeader("Authorization", "Bearer " + TokenStatic.getToken())
                     .post(requestBody)
                     .build();
