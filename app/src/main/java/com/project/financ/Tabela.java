@@ -200,86 +200,50 @@ public class Tabela extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                   ClearList(adapter);
+                    ClearList(adapter);
                     double valorVisor = 0;
                     String dataIni = btnDtIni.getText().toString().trim().replace("/", "%2F");
                     String dataFim = btnDtFim.getText().toString().trim().replace("/", "%2F");
 
                     String dataGet = "DataIni=" + dataIni + "&DataFim=" + dataFim;
-                   if(typegasto == 0){
-                       String retorno = HttpRequest.Get(dataGet);
-                       Gson gson = new Gson();
-                       Type retornoListType = new TypeToken<ArrayList<RetornoGastos>>() {}.getType();
-                       ArrayList<RetornoGastos> ret = gson.fromJson(retorno, retornoListType);
+                    String retorno = "";
 
-                       for(var obj : ret){
-                           LocalDateTime data = null;
-                           data = LocalDateTime.parse(obj.dthr);
-                           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-                           String dataFormatada = data.format(formatter);
-                           if(obj.categoria.equals("c")) {
-                               itens.add(obj.titulo + "\n" + obj.descricao  + "\nR$" + obj.valor + "\n" + dataFormatada );
-                           }
-                           else {
-                               itens.add("ID: " + obj.gpId + "\n" + obj.titulo + "\n" + obj.descricao  + "\nParcelas: " + obj.parcela + "\nR$" + obj.valor + "\n" + dataFormatada );
-                           }
-                           valorVisor = valorVisor + obj.valor;
-                       }
+                    if (typegasto == 0) {
+                        retorno = HttpRequest.Get(dataGet);
+                    } else if (typegasto == 1) {
+                        retorno = HttpRequest.Get(dataGet + "&categoria=S");
+                    } else if (typegasto == 2) {
+                        retorno = HttpRequest.Get(dataGet + "&categoria=D");
+                    } else {
+                        retorno = HttpRequest.Get(dataGet + "&categoria=C");
+                    }
 
-                   } else if (typegasto == 1) {
-                       String retorno = HttpRequest.Get(dataGet + "&categoria=S");
-                       Gson gson = new Gson();
-                       Type retornoListType = new TypeToken<ArrayList<RetornoGastos>>() {}.getType();
-                       ArrayList<RetornoGastos> ret = gson.fromJson(retorno, retornoListType);
+                    Gson gson = new Gson();
+                    Type retornoListType = new TypeToken<ArrayList<RetornoGastos>>() {}.getType();
+                    ArrayList<RetornoGastos> ret = gson.fromJson(retorno, retornoListType);
 
-                       for(var obj : ret){
-                           LocalDateTime data = null;
-                           data = LocalDateTime.parse(obj.dthr);
-                           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-                           String dataFormatada = data.format(formatter);
-                           itens.add(obj.titulo + "\n" + obj.descricao  + "\nR$" + obj.valor + "\n" + dataFormatada );
+                    for (var obj : ret) {
+                        LocalDateTime data = LocalDateTime.parse(obj.dthr);
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                        String dataFormatada = data.format(formatter);
 
-                           valorVisor = valorVisor + obj.valor;
-                       }
-                   }
-                   else if (typegasto == 2){
-                       String retorno = HttpRequest.Get(dataGet + "&categoria=D");
-                       Gson gson = new Gson();
-                       Type retornoListType = new TypeToken<ArrayList<RetornoGastos>>() {}.getType();
-                       ArrayList<RetornoGastos> ret = gson.fromJson(retorno, retornoListType);
+                        String descricaoFormatada = !obj.descricao.isEmpty() ? "\n" + obj.descricao : "";
 
-                       for(var obj : ret){
-                           LocalDateTime data = null;
-                           data = LocalDateTime.parse(obj.dthr);
-                           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-                           String dataFormatada = data.format(formatter);
-                           itens.add(obj.titulo + "\n" + obj.descricao  + "\nR$" + obj.valor + "\n" + dataFormatada );
+                        if (obj.categoria.equals("Crédito")) {
+                            itens.add("ID: " + obj.gpId + "\n" + obj.titulo + descricaoFormatada + "\nParcelas: " + obj.parcela +"\nR$ " + obj.valor + "\n" + dataFormatada);
+                        } else {
+                            itens.add(obj.titulo + descricaoFormatada + "\nR$ " + obj.valor + "\n" + dataFormatada);
+                        }
 
-                           valorVisor = valorVisor + obj.valor;
-                       }
-                   }
-                   else{
-                       String retorno = HttpRequest.Get(dataGet +"&categoria=C");
-                       Gson gson = new Gson();
-                       Type retornoListType = new TypeToken<ArrayList<RetornoGastos>>() {}.getType();
-                       ArrayList<RetornoGastos> ret = gson.fromJson(retorno, retornoListType);
+                        valorVisor += obj.valor;
+                    }
 
-                       for(var obj : ret){
-                           LocalDateTime data = null;
-                           data = LocalDateTime.parse(obj.dthr);
-                           DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-                           String dataFormatada = data.format(formatter);
-                           itens.add("ID: " + obj.gpId + "\n" + obj.titulo + "\n" + obj.descricao  + "\nParcelas: " + obj.parcela + "\nR$" + obj.valor + "\n" + dataFormatada );
-                           valorVisor = valorVisor + obj.valor;
-                       }
-                   }
-                  //  itens.add("Teste");
                     adapter.notifyDataSetChanged();
                     DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
                     txtSaldoVisor.setText("R$ " + decimalFormat.format(valorVisor));
 
                 } catch (Exception e) {
-                    ExibeMsg("Erro","Ocorreu um erro:" + e.getMessage());
+                    ExibeMsg("Erro", "Ocorreu um erro: " + e.getMessage());
                 }
             }
         });
