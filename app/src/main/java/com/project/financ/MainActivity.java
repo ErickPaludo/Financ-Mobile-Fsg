@@ -117,7 +117,9 @@ public class MainActivity extends AppCompatActivity {
                             objretorno = objretorno.replaceFirst("Sucesso: ","");
                             Gson gson = new Gson();
                             Token ret = gson.fromJson(objretorno, Token.class);
-
+                            TokenStatic.setUser(ret.getUser());
+                            TokenStatic.setToken(ret.getToken());
+                            TokenStatic.setRefreshToken(ret.getRefreshToken());
 
                             // Abrir o banco de dados
                             database = SQLiteDatabase.openOrCreateDatabase(file, null);
