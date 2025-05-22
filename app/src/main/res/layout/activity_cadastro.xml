@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Cadastro">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="761dp"
-        android:background="#DDDDDD"
-        android:backgroundTint="@color/white"
+        android:background="#808080"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:background="#AAAAAA"
+            android:background="#808080"
             android:padding="8dp"
             android:text="Cadastro"
             android:textColor="#FFFFFF"
@@ -39,7 +39,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#673AB7"
+                android:backgroundTint="#191919"
                 android:text="Saldo" />
 
             <Button
@@ -47,16 +47,18 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#C8C8C8"
-                android:text="Débito" />
+                android:backgroundTint="#e8e9e9"
+                android:text="Débito"
+                android:textColor="#000000" />
 
             <Button
                 android:id="@+id/btnCredito"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#C8C8C8"
-                android:text="Crédito" />
+                android:backgroundTint="#e8e9e9"
+                android:text="Crédito"
+                android:textColor="#000000" />
 
 
         </LinearLayout>
@@ -66,7 +68,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#e6e6e6">
 
             <EditText
                 android:id="@+id/textTitle"
@@ -74,7 +77,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:hint="Título" />
+                android:hint="Título"
+                android:textColor="#e6e6e6"
+                />
 
             <EditText
                 android:id="@+id/textValor"
@@ -90,7 +95,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#e6e6e6">
 
             <EditText
                 android:id="@+id/textData"
@@ -98,26 +104,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:hint="Data"
                 android:focusable="false"
-                android:inputType="date" />
+                android:hint="Data"
+                android:inputType="date"
+                />
 
             <EditText
                 android:id="@+id/textValorParcela"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:visibility="gone"
                 android:layout_weight="1"
                 android:hint="Valor Parcela"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#e6e6e6">
 
             <EditText
                 android:id="@+id/textDesc"
@@ -132,9 +140,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:visibility="gone"
                 android:hint="Parcelas"
-                android:inputType="number" />
+                android:inputType="number"
+                android:visibility="gone" />
         </LinearLayout>
 
         <!-- Botões de ação -->
@@ -151,16 +159,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:backgroundTint="#673AB7"
-                android:text="Salvar" />
+                android:backgroundTint="#e8e9e9"
+                android:text="Salvar"
+                android:textColor="#000000" />
 
             <Button
                 android:id="@+id/btnCancelar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#673AB7"
-                android:text="Cancelar" />
+                android:backgroundTint="#e8e9e9"
+                android:text="Cancelar"
+                android:textColor="#000000" />
         </LinearLayout>
 
 
@@ -170,8 +180,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:backgroundTint="#673AB7"
-            android:text="Dicas de Finanças" />
+            android:backgroundTint="#e8e9e9"
+            android:text="Dicas de Finanças"
+            android:textColor="#000000" />
 
         <Button
             android:id="@+id/btnVizualizar"
@@ -179,7 +190,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:backgroundTint="#673AB7"
-            android:text="Vizualizar Gastos" />
+            android:backgroundTint="#e8e9e9"
+            android:text="Vizualizar Gastos"
+            android:textColor="#000000" />
     </LinearLayout>
 </FrameLayout>

@@ -4,19 +4,21 @@
     android:id="@+id/tabela"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFF"
     android:orientation="vertical"
+    android:background="#808080"
+
+
     android:padding="16dp">
 
-        <!-- Título -->
-
-    <!-- Tabs -->
 
     <Button
         android:id="@+id/btnSair"
         android:layout_width="79dp"
         android:layout_height="wrap_content"
-        android:text="Sair" />
+        android:text="Sair"
+        android:backgroundTint="#e8e9e9"
+
+        android:textColor="#000000"/>
 
     <TextView
         android:layout_width="382dp"
@@ -24,6 +26,8 @@
         android:padding="8dp"
         android:text="Título"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
+
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -33,19 +37,24 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="0dp"/>
-          <Spinner android:id="@+id/combo"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_marginTop="16dp"
-            android:padding="8dp" />
 
-        <!-- Campos de Data -->
-        <TextView
+    <!-- Campos de Data -->
+
+    <Spinner
+        android:id="@+id/combo"
+        android:layout_width="333dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#e6e6e6"
+        android:padding="8dp" />
+
+    <TextView
             android:id="@+id/txtSaldoVisor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="R$00,00"
+        android:background="#e6e6e6"
             android:textAlignment="center"
             android:textSize="16sp" />
 
@@ -67,6 +76,7 @@
                 android:minHeight="48dp"
                 android:hint="Data Ini"
                 android:inputType="date"
+                android:background="#e6e6e6"
                 android:focusable="false"
                 android:clickable="true"/>
 
@@ -78,6 +88,7 @@
                 android:hint="Data Fim"
                 android:minHeight="48dp"
                 android:inputType="date"
+                android:background="#e6e6e6"
                 android:focusable="false"
                 android:clickable="true"/>
         </LinearLayout>
@@ -93,7 +104,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#673AB7"
+            android:backgroundTint="#e8e9e9"
+            android:textColor="#000000"
             android:text="search" />
     </LinearLayout>
         <!-- Lista de Itens -->
@@ -102,6 +114,7 @@
         android:layout_width="match_parent"
         android:layout_height="325dp"
         android:divider="#CCCCCC"
+        android:background="#e6e6e6"
         android:dividerHeight="1dp" />
 
 
@@ -119,14 +132,18 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Dicas de Finanças"
+                android:backgroundTint="#e8e9e9"
+                android:textColor="#000000"
                 android:layout_marginEnd="8dp" />
 
             <Button
                 android:id="@+id/btnCadastrar"
-                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Cadastrar" />
+                android:layout_weight="1"
+                android:text="Cadastrar"
+                android:backgroundTint="#e8e9e9"
+                android:textColor="#000000"/>
         </LinearLayout>
 
 
