@@ -54,6 +54,7 @@ public class Tabela extends AppCompatActivity {
     ListView lista;
     Button btnPesquisar;
     Button btnCadastrar;
+    Button btnDicas;
     Button btnSair;
     TextView txtSaldoVisor;
     Spinner combo;
@@ -98,6 +99,7 @@ public class Tabela extends AppCompatActivity {
         btnPesquisar = (Button)findViewById((R.id.btnPesquisar));
 
         btnCadastrar = (Button)findViewById(R.id.btnCadastrar);
+        btnDicas = (Button)findViewById(R.id.btnDicas);
         lista = (ListView)findViewById(R.id.listView);
         txtSaldoVisor = (TextView)findViewById((R.id.txtSaldoVisor));
         itens = new ArrayList<>(Arrays.asList());
@@ -279,6 +281,25 @@ public class Tabela extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     Intent intent = new Intent(Tabela.this, Cadastro.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    // Exibe o erro em um AlertDialog para facilitar o diagnóstico
+                    new AlertDialog.Builder(Tabela.this)
+                            .setTitle("Erro")
+                            .setMessage("Ocorreu um erro ao tentar abrir a tela: " + e.getMessage())
+                            .setPositiveButton("OK", null)
+                            .show();
+
+                    // Também pode imprimir o erro no Logcat
+                    e.printStackTrace();
+                }
+            }
+        });
+        btnDicas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent(Tabela.this, Dicas.class);
                     startActivity(intent);
                 } catch (Exception e) {
                     // Exibe o erro em um AlertDialog para facilitar o diagnóstico
