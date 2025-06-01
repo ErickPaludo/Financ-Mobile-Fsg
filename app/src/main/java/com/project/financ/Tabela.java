@@ -195,8 +195,6 @@ public class Tabela extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
-
-
         btnPesquisar.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -211,13 +209,12 @@ public class Tabela extends AppCompatActivity {
                     String retorno = "";
 
                     if (typegasto == 0) {
-                        retorno = HttpRequest.Get(dataGet);
+                        retorno = HttpRequest.Get("3000",dataGet);
                     } else if (typegasto == 1) {
-                        retorno = HttpRequest.Get(dataGet + "&categoria=S");
                     } else if (typegasto == 2) {
-                        retorno = HttpRequest.Get(dataGet + "&categoria=D");
+                        retorno = HttpRequest.Get("3000",dataGet + "&categoria=D");
                     } else {
-                        retorno = HttpRequest.Get(dataGet + "&categoria=C");
+                        retorno = HttpRequest.Get("3000",dataGet + "&categoria=C");
                     }
 
                     Gson gson = new Gson();
@@ -249,7 +246,6 @@ public class Tabela extends AppCompatActivity {
                 }
             }
         });
-
         combo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -274,8 +270,6 @@ public class Tabela extends AppCompatActivity {
             }
 
         });
-
-
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

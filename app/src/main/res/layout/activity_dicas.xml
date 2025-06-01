@@ -6,32 +6,49 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#808080"
-
-
     android:padding="16dp">
 
-
     <!-- Campos de Data -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp" />
+
     <!-- Lista de Itens -->
 
-
-    <!-- Botões de Ação -->
-
+    <!-- Espaço entre a lista e o campo de texto -->
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="582dp"
+        android:layout_height="290dp"
         android:background="#e6e6e6"
         android:divider="#CCCCCC"
         android:dividerHeight="1dp" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <!-- Campo de texto -->
+    <EditText
+        android:id="@+id/editTextDescriDica"
+        android:layout_width="match_parent"
+        android:layout_height="318dp"
+        android:background="@color/white"
+        android:gravity="top|start"
+        android:padding="8dp"
+        android:inputType="textMultiLine"
+        android:focusable="false"
+        android:cursorVisible="false"
+        android:longClickable="false"
+        android:text=""
+        android:enabled="false" />
+
+
+
+    <!-- Botões de Ação -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,8 +63,7 @@
             android:layout_weight="1"
             android:text="Voltar"
             android:backgroundTint="#e8e9e9"
-            android:textColor="#000000"/>
+            android:textColor="#000000" />
     </LinearLayout>
-
 
 </LinearLayout>

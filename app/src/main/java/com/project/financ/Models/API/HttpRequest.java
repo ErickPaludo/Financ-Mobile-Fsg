@@ -20,21 +20,30 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class HttpRequest {
-    public static String Get(String metodo) {
-        final String[] resultado = {""}; // vai guardar o retorno aqui
+    public static String Get(String port, String metodo) {
+        final String[] resultado = {""};
 
         Thread thread = new Thread(() -> {
             OkHttpClient client = new OkHttpClient();
 
-            Request request = new Request.Builder()
-                    .url("http://100.96.1.2:3001/geral/retorno?iduser="+TokenStatic.getUser()+"&PageNumber=1&PageSize=50&"+metodo)
-                    .addHeader("Authorization", "Bearer " + TokenStatic.getToken())
-                    .build();
+            String url;
+            Request.Builder requestBuilder;
+
+            if (port.equals("3002")) {
+                url = "http://100.96.1.2:3002/" + metodo;
+                requestBuilder = new Request.Builder().url(url);
+            } else {
+                url = "http://100.96.1.2:3000/geral/retorno?iduser=" + TokenStatic.getUser() + "&PageNumber=1&PageSize=50&" + metodo;
+                requestBuilder = new Request.Builder()
+                        .url(url)
+                        .addHeader("Authorization", "Bearer " + TokenStatic.getToken());
+            }
+
+            Request request = requestBuilder.build();
 
             try (Response response = client.newCall(request).execute()) {
                 if (response.isSuccessful()) {
-                    String bodyString = response.body().string(); // Lê apenas uma vez
-                    resultado[0] = bodyString; // Armazena o sucesso
+                    resultado[0] = response.body().string();
                 } else {
                     resultado[0] = "Erro na chamada da API: Código de resposta " + response.code();
                 }
@@ -46,12 +55,12 @@ public class HttpRequest {
         thread.start();
 
         try {
-            thread.join(); // Aguarda a conclusão da thread
+            thread.join();
         } catch (InterruptedException e) {
             return "Erro ao aguardar a execução da thread: " + e.getMessage();
         }
 
-        return resultado[0]; // Retorna o que foi preenchido lá
+        return resultado[0];
     }
 
     public static String Post(Object objeto,String metodo) {
@@ -69,7 +78,7 @@ public class HttpRequest {
 
             // Criação da requisição POST
             Request request = new Request.Builder()
-                    .url("http://100.96.1.2:3001/"+ metodo)
+                    .url("http://100.96.1.2:3000/"+ metodo)
                     .addHeader("Authorization", "Bearer " + TokenStatic.getToken())
                     .post(requestBody)
                     .build();
