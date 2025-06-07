@@ -96,10 +96,9 @@ public class Tabela extends AppCompatActivity {
 
 
 
-        btnPesquisar = (Button)findViewById((R.id.btnPesquisar));
-
-        btnCadastrar = (Button)findViewById(R.id.btnCadastrar);
+        btnPesquisar = (Button)findViewById(R.id.btnPesquisar);
         btnDicas = (Button)findViewById(R.id.btnDicas);
+        btnCadastrar = (Button)findViewById(R.id.btnCadastrar);
         lista = (ListView)findViewById(R.id.listView);
         txtSaldoVisor = (TextView)findViewById((R.id.txtSaldoVisor));
         itens = new ArrayList<>(Arrays.asList());
@@ -146,7 +145,6 @@ public class Tabela extends AppCompatActivity {
                 }
             }
         });
-
         btnDtIni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -211,6 +209,7 @@ public class Tabela extends AppCompatActivity {
                     if (typegasto == 0) {
                         retorno = HttpRequest.Get("3000",dataGet);
                     } else if (typegasto == 1) {
+                        retorno = HttpRequest.Get("3000",dataGet + "&categoria=S");
                     } else if (typegasto == 2) {
                         retorno = HttpRequest.Get("3000",dataGet + "&categoria=D");
                     } else {

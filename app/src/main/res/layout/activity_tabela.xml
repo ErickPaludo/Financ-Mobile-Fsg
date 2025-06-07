@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#808080"
+    android:background="#ffffff"
 
 
     android:padding="16dp">
@@ -16,9 +16,9 @@
         android:layout_width="79dp"
         android:layout_height="wrap_content"
         android:text="Sair"
-        android:backgroundTint="#e8e9e9"
+        android:backgroundTint="#000000"
 
-        android:textColor="#000000"/>
+        android:textColor="#ffffff"/>
 
     <TextView
         android:layout_width="382dp"
@@ -26,7 +26,7 @@
         android:padding="8dp"
         android:text="Título"
         android:textAlignment="center"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
 
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -42,7 +42,7 @@
 
     <Spinner
         android:id="@+id/combo"
-        android:layout_width="333dp"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="#e6e6e6"
@@ -104,9 +104,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:backgroundTint="#e8e9e9"
-            android:textColor="#000000"
-            android:text="search" />
+            android:backgroundTint="#000000"
+            android:textColor="#ffffff"
+            android:text="Pesquisar" />
     </LinearLayout>
         <!-- Lista de Itens -->
     <ListView
@@ -132,9 +132,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:backgroundTint="#e8e9e9"
+                android:backgroundTint="#000000"
                 android:text="Dicas de Finanças"
-                android:textColor="#000000" />
+                android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/btnCadastrar"
@@ -142,8 +142,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Cadastrar"
-                android:backgroundTint="#e8e9e9"
-                android:textColor="#000000"/>
+                android:backgroundTint="#000000"
+                android:textColor="#ffffff"/>
         </LinearLayout>
 
 

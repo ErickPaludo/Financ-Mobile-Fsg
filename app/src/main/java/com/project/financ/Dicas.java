@@ -1,9 +1,11 @@
 package com.project.financ;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,6 +35,7 @@ public class Dicas extends AppCompatActivity {
     ListView listDicas;
     TextView textDica;
     List<DicasReq> dicasArmz;
+    Button btnVoltar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,9 @@ public class Dicas extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        btnVoltar = (Button)findViewById((R.id.btnVoltar));
+
         dicas = new ArrayList<>();
         dicasArmz = new ArrayList<>();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dicas);
@@ -92,6 +98,16 @@ public class Dicas extends AppCompatActivity {
                 }
             }
         });
+        btnVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dicas.this, Tabela.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
 }

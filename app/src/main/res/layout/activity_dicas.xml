@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#808080"
-    android:padding="16dp">
+    android:background="#ffffff"
+    android:padding="16dp"
+    android:gravity="center">
 
     <!-- Campos de Data -->
     <LinearLayout
@@ -14,15 +15,28 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="0dp" />
 
     <!-- Lista de Itens -->
 
-    <!-- Espaço entre a lista e o campo de texto -->
+    <!-- Lista -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:background="#ffffff"
+        android:padding="8dp"
+        android:text="Dicas"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="290dp"
+        android:layout_height="295dp"
         android:background="#e6e6e6"
         android:divider="#CCCCCC"
         android:dividerHeight="1dp" />
@@ -35,18 +49,16 @@
     <EditText
         android:id="@+id/editTextDescriDica"
         android:layout_width="match_parent"
-        android:layout_height="318dp"
+        android:layout_height="218dp"
         android:background="@color/white"
-        android:gravity="top|start"
-        android:padding="8dp"
-        android:inputType="textMultiLine"
-        android:focusable="false"
         android:cursorVisible="false"
+        android:enabled="true"
+        android:focusable="false"
+        android:gravity="top|start"
+        android:inputType="textMultiLine"
         android:longClickable="false"
-        android:text=""
-        android:enabled="false" />
-
-
+        android:padding="8dp"
+        android:text="" />
 
     <!-- Botões de Ação -->
     <LinearLayout
@@ -57,13 +69,13 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/btnCadastrar"
+            android:id="@+id/btnVoltar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Voltar"
-            android:backgroundTint="#e8e9e9"
-            android:textColor="#000000" />
+            android:backgroundTint="#000000"
+            android:textColor="#ffffff" />
     </LinearLayout>
 
 </LinearLayout>

@@ -46,6 +46,7 @@ public class Cadastro extends AppCompatActivity {
     Button btnCredito;
     Button btnSalvar;
     Button btnVizualizar;
+    Button btnDicas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,7 @@ public class Cadastro extends AppCompatActivity {
         btnCredito = (Button)findViewById(R.id.btnCredito);
         btnSalvar = (Button)findViewById(R.id.btnSalvar);
         btnVizualizar = (Button)findViewById(R.id.btnVizualizar);
+        btnDicas = (Button)findViewById(R.id.btnDicas);
 
         textData.setText(dataAtual);
         btnSaldo.setOnClickListener(new View.OnClickListener() {
@@ -191,22 +193,18 @@ public class Cadastro extends AppCompatActivity {
         btnVizualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
+
                     Intent intent = new Intent(Cadastro.this, Tabela.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(intent);
                     finish();
-                } catch (Exception e) {
-                    // Exibe o erro em um AlertDialog para facilitar o diagnóstico
-                    new AlertDialog.Builder(Cadastro.this)
-                            .setTitle("Erro")
-                            .setMessage("Ocorreu um erro ao tentar abrir a tela: " + e.getMessage())
-                            .setPositiveButton("OK", null)
-                            .show();
-
-                    // Também pode imprimir o erro no Logcat
-                    e.printStackTrace();
-                }
+            }
+        });
+        btnDicas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent intent = new Intent(Cadastro.this, Dicas.class);
+                    startActivity(intent);
             }
         });
     }
